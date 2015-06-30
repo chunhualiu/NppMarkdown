@@ -721,6 +721,7 @@ public:
 				return;
 			BSTR str = html.AllocSysString();
 			iElem->put_innerHTML(str);
+			SysFreeString(str);
 		}
 	}
 

@@ -22,6 +22,33 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="hoedown\autolink.c">
+      <Filter>hoedown</Filter>
+    </ClCompile>
+    <ClCompile Include="hoedown\buffer.c">
+      <Filter>hoedown</Filter>
+    </ClCompile>
+    <ClCompile Include="hoedown\document.c">
+      <Filter>hoedown</Filter>
+    </ClCompile>
+    <ClCompile Include="hoedown\escape.c">
+      <Filter>hoedown</Filter>
+    </ClCompile>
+    <ClCompile Include="hoedown\html.c">
+      <Filter>hoedown</Filter>
+    </ClCompile>
+    <ClCompile Include="hoedown\html_blocks.c">
+      <Filter>hoedown</Filter>
+    </ClCompile>
+    <ClCompile Include="hoedown\html_smartypants.c">
+      <Filter>hoedown</Filter>
+    </ClCompile>
+    <ClCompile Include="hoedown\stack.c">
+      <Filter>hoedown</Filter>
+    </ClCompile>
+    <ClCompile Include="hoedown\version.c">
+      <Filter>hoedown</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Docking.h">
@@ -69,15 +96,33 @@
     <ClInclude Include="XBrowser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="dockingResource.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <ClInclude Include="dockingResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hoedown\autolink.h">
+      <Filter>hoedown</Filter>
+    </ClInclude>
+    <ClInclude Include="hoedown\buffer.h">
+      <Filter>hoedown</Filter>
+    </ClInclude>
+    <ClInclude Include="hoedown\document.h">
+      <Filter>hoedown</Filter>
+    </ClInclude>
+    <ClInclude Include="hoedown\escape.h">
+      <Filter>hoedown</Filter>
+    </ClInclude>
+    <ClInclude Include="hoedown\html.h">
+      <Filter>hoedown</Filter>
+    </ClInclude>
+    <ClInclude Include="hoedown\stack.h">
+      <Filter>hoedown</Filter>
+    </ClInclude>
+    <ClInclude Include="hoedown\version.h">
+      <Filter>hoedown</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -88,6 +133,9 @@
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{b8c67899-0b70-4350-a9df-0587a6dbfc4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hoedown">
+      <UniqueIdentifier>{edd93dd6-b0be-4605-a27c-be6fd93dbe95}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

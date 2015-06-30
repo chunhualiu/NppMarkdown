@@ -15,6 +15,8 @@ using namespace std;
 extern CAppModule _Module;
 extern NppData nppData;
 
+#include "hoedown/html.h"
+
 class CPreviewDlg : public CAxDialogImpl<CPreviewDlg>
 {
 public:
@@ -73,18 +75,36 @@ public:
 		int len = ::SendMessage(curScintilla, SCI_GETTEXTLENGTH, 0, 0);
 		len += 1;
 		char* buf = new char[len];
-		memset(buf, '\0', sizeof(char)*len);
 		::SendMessage(curScintilla, SCI_GETTEXT, len, (LPARAM)buf);
+		buf[len-1] = '\0';
 
+#if 0
 		string mdString = buf;
 		markdown::Document doc;
 		doc.read(mdString);
 		std::ostringstream stream;
 		doc.write(stream);
-		std::string aHtml =  stream.str();
+		std::string aHtml = stream.str();
+#else
+		hoedown_renderer *renderer = hoedown_html_renderer_new(HOEDOWN_HTML_USE_XHTML, 0);
+		hoedown_extensions extensions = (hoedown_extensions)(HOEDOWN_EXT_TABLES); // Parse PHP-Markdown style tables.
+		extensions = (hoedown_extensions)(extensions|HOEDOWN_EXT_FENCED_CODE); // Parse fenced code blocks.
+		extensions = (hoedown_extensions)(extensions|HOEDOWN_EXT_AUTOLINK); // Automatically turn safe URLs into links.
+		extensions = (hoedown_extensions)(extensions|HOEDOWN_EXT_NO_INTRA_EMPHASIS); // Disable emphasis_between_words.
+		extensions = (hoedown_extensions)(extensions|HOEDOWN_EXT_STRIKETHROUGH); // Parse ~~stikethrough~~ spans.
+		hoedown_document *document = hoedown_document_new(renderer, extensions, 16);
+		hoedown_buffer *html = hoedown_buffer_new(16);
+		hoedown_document_render(document, html, (const uint8_t *)buf, len);
+		//printf("%.*s", html->size, html->data);
+		std::string aHtml = (const char *)html->data;
+		hoedown_buffer_free(html);
+		hoedown_document_free(document);
+		hoedown_html_renderer_free(renderer);
+#endif
 
     USES_CONVERSION;
     int codepage = (int)::SendMessage(curScintilla, SCI_GETCODEPAGE, 0, 0);
+
     wstring wHtml;
     std::wstring_convert<std::codecvt_utf8<wchar_t>> myconv;
     switch (codepage)

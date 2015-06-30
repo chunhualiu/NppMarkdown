@@ -73,9 +73,14 @@ public :
 	{
 		DockingDlgInterface::create(data, isRTL);
 		dlg = new CPreviewDlg;
-    WTL::CString sHtmlPath;
-    sHtmlPath = IniTempHtmlFile();
-    dlg->Ini(sHtmlPath);
+		WTL::CString sHtmlPath;
+		//sHtmlPath = IniTempHtmlFile();
+		WCHAR npp_path[MAX_PATH];
+		GetModuleFileName(NULL, npp_path, MAX_PATH);
+		WCHAR *p = wcsrchr(npp_path, L'\\');
+		*p = 0;
+		sHtmlPath.Format(L"%s\\plugins\\NppMarkdown.html", npp_path);
+		dlg->Ini(sHtmlPath);
 		dlg->Create(_hSelf, NULL);
 	};
 
